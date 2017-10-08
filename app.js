@@ -14,53 +14,38 @@ app.get('/rooms', function(req, res) {
   res.send(roomList)
 })
 
-var rooms = {}
+var streams = {}
 
 io.on('connection', function(socket) {
 
-  socket.on('create_room', function(room) {
-    if (!room.key) {
+  socket.on('create_stream', function(stream) {
+    if (!stream.key) {
       return
     }
-    console.log('create room:', room)
-    var roomKey = room.key
-    rooms[roomKey] = room
-    socket.roomKey = roomKey
-    socket.join(roomKey)
+    console.log('create stream:', stream)
+    var streamKey = stream.key
+    streams[streamKey] = stream
+    socket.roomKey = streamKey
+    socket.join(streamKey)
   })
 
-  socket.on('close_room', function(roomKey) {
-    console.log('close room:', roomKey)
-    delete rooms[roomKey]
+  socket.on('close_stream', function(streamKey) {
+    console.log('close stream:', streamKey)
+    delete rooms[streamKey]
   })
 
   socket.on('disconnect', function() {
     console.log('disconnect:', socket.roomKey)
     if (socket.roomKey) {
-      delete rooms[socket.roomKey]
+      delete streams[socket.roomKey]
     }
   })
 
-  socket.on('join_room', function(roomKey) {
-    console.log('join room:', roomKey)
-    socket.join(roomKey)
-  })
-
-  socket.on('upvote', function(roomKey) {
-    console.log('upvote:', roomKey)
-    io.to(roomKey).emit('upvote')
-  })
-
-  socket.on('gift', function(data) {
-    console.log('gift:', data)
-    io.to(data.roomKey).emit('gift', data)
-  })
-
-  socket.on('comment', function(data) {
-    console.log('comment:', data)
-    io.to(data.roomKey).emit('comment', data)
+  socket.on('join_stream', function(streamKey) {
+    console.log('join room:', streamKey)
+    socket.join(streamKey)
   })
 
 })
 
-console.log('listening on port 3000...')
+console.log('listening on port', port)
