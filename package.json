@@ -1,5 +1,5 @@
 {
-  "name": "Node Live Stream",
+  "name": "NodeLiveStream",
   "version": "1.0.0",
   "description": "Simple Live Stream using node js and sockets.",
   "main": "index.js",
