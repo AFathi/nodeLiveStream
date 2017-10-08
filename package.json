@@ -1,0 +1,15 @@
+{
+  "name": "Node Live Stream",
+  "version": "1.0.0",
+  "description": "Simple Live Stream using node js and sockets.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Ahmed Bekhit",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "socket.io": "^1.4.8"
+  }
+}

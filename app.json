@@ -1,0 +1,6 @@
+{
+  "name": "Live Server Sockets",
+  "description": "Live AR node.js Backend",
+  "repository": "https://github.com/AFathi/nodeLiveStream",
+  "keywords": ["node", "websocket", "rmtp"]
+}
